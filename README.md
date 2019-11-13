@@ -324,7 +324,7 @@ Nov 06 02:48:06 ip-172-31-9-152 systemd[1]: Starting A high performance web serv
 Nov 06 02:48:06 ip-172-31-9-152 systemd[1]: Started A high performance web server and a reverse proxy server.
 ```
 
-the testing dashboard web page like this can be visit on the http://18.162.249.250/superset/dashboard/11/ 
+the testing dashboard web page like this can be visit on the http://18.162.249.250/superset/dashboard/10/ 
 <img src='img.jpeg'>
 
 Reference:
