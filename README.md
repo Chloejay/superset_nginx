@@ -1,30 +1,30 @@
-# superset_nginx
-superset
+## superset_nginx
 
-<h4>Reverse Nginx for Superset</h4>
-This repo is documented apache superset deployment with reverse Nginx and Gunicorn on the AWS, the pipeline built based on
+<h6>Reverse proxy for deploying <a href="https://github.com/apache/incubator-superset">Apache Superset</a></h6>
+This repo is documented apache Superset deployment with Nginx and Gunicorn on AWS, pipeline built structure
 - load data from mongodb 
-- use python to do the data cleansing and aggregation
-- transfer aggregated data to DWH, MySQL 
+- python for data cleansing and aggregation
+- transfer aggregated data to DWH, MySQL on cloud
 - connect DB with Apache Superset 
 
-use airflow for the data pipeline orchestration, for we need not only `in-house` dashboard but the one that any user can view from public domain, like the Flask app, the easiest way is to use the revsere proxy nginx. 
+use airflow for data pipeline orchestration, for we need not only `in-house` dashboard but the one that any user can view from public domain, such as Flask app, the easiest way is to use Reverse proxy, to mask upstream connections,put in modules conf(`suprset.conf`). 
 
-#### Init the venv 
+listening on `cloud 18.162.249.250` `localhost` to `port 8088`.
+
+#### Init virtual env
 ```bash 
 $pyenv activate superset 
 ```
-#### check the PYTHONPATH, can use `sys` module to check all the available path 
+#### check PYTHONPATH, can use `sys` module to check all available paths 
 ```bash
 $ /home/ubuntu/.local/lib/python3.5/site-packages 
 ```
-#### Create a new config file
-
+#### Create a new config file or use default one from Superset
 ```bash 
 $ vim /home/ubuntu/.local/lib/python3.5/site-packages/superset_config.py
 ```
 
-#### add the following line in that folder 
+#### add the following lines in that folder 
 ```bash 
 from superset.security import SupersetSecurityManager
 from flask import redirect, g, flash, request, session
@@ -177,11 +177,11 @@ $ gunicorn superset:app -b localhost:8000 &
 $ sudo apt-get install nginx
 ```
 
-###### here have two file_dirs need to config to get the nginx run 
+###### here have two file_dirs need to config to get nginx run 
 ```bash
 $ sudo vim /etc/nginx/nginx.conf
 ```
-###### add the following lines 
+###### add following lines 
 ```bash 
 user www-data;
 worker_processes auto;
@@ -250,7 +250,7 @@ http {
         include /etc/nginx/sites-enabled/*;
 }
 ```
-#### config config files on the site-available folder 
+#### config files on site-available folder 
 ```bash
 $sudo vim /etc/nginx/sites-available/suprset.conf
 ```
@@ -288,7 +288,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```bash 
 $ sudo systemctl status nginx
 ```
-###### you will see the process similar to this below 
+###### you will see process similar to below 
 ```bash 
  nginx.service - A high performance web server and a reverse proxy server
    Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
@@ -324,9 +324,10 @@ Nov 06 02:48:06 ip-172-31-9-152 systemd[1]: Starting A high performance web serv
 Nov 06 02:48:06 ip-172-31-9-152 systemd[1]: Started A high performance web server and a reverse proxy server.
 ```
 
-the testing dashboard web page like this can be visit on the http://18.162.249.250/superset/dashboard/10/ 
+the testing dashboard web page like this can be visited on http://18.162.249.250/superset/dashboard/10/ 
+<img src='img_update.jpeg'> 
 <img src='img_update2.jpeg'>
-<!-- <img src='img_update.jpeg'>  -->
+<img src='img.jpeg'> 
 
 Reference:
 <ul>

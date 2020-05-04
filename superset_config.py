@@ -96,7 +96,4 @@ CACHE_CONFIG = {
 'CACHE_REDIS_PORT': 6379,
 'CACHE_REDIS_DB': 1,
 'CACHE_REDIS_URL': 'redis://localhost:6379/1'
-
 }
-
-
