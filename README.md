@@ -7,7 +7,7 @@ This repo is documented apache Superset deployment with Nginx and Gunicorn on AW
 - transfer aggregated data to DWH, MySQL on cloud
 - connect DB with Apache Superset 
 
-use airflow for data pipeline orchestration, for we need not only `in-house` dashboard but the one that any user can view from public domain, such as Flask app, the easiest way is to use Reverse proxy, to mask upstream connections,put in modules conf(`suprset.conf`). 
+use airflow for data pipeline orchestration, for we need not only `in-house` dashboard but the one that any user can view from public domain, such as Flask app, the easiest way is to use `Reverse proxy`, to mask upstream connections, put in modules conf(`suprset.conf`). 
 
 listening on `cloud 18.162.249.250` `localhost` to `port 8088`.
 
@@ -327,7 +327,7 @@ Nov 06 02:48:06 ip-172-31-9-152 systemd[1]: Started A high performance web serve
 the testing dashboard web page like this can be visited on http://18.162.249.250/superset/dashboard/10/ 
 <img src='img_update.jpeg'> 
 <img src='img_update2.jpeg'>
-<img src='img.jpeg'> 
+<!-- <img src='img.jpeg'>  -->
 
 Reference:
 <ul>
